@@ -11,12 +11,12 @@ class SuperAdminSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'superadmin@nemt.com'],
+            ['email' => 'superadminthumbstact@gmail.com'],
             [
-                'name'     => 'Super Admin',
+                'name'     => 'SuperAdmin',
                 'password' => Hash::make('password'),
                 'role'     => 'superadmin',
-                'phone'    => '555-0000',
+                'phone'    => '09361336825',
             ]
         );
     }
