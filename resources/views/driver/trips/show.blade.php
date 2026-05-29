@@ -255,16 +255,17 @@
                 </div>
 
                 {{-- Open in Google Maps button --}}
-                <a href="https://www.google.com/maps/dir/?api=1&origin={{ urlencode($booking->pickup_address) }}&destination={{ urlencode($booking->dropoff_address) }}&travelmode=driving&dir_action=navigate"
-                target="_blank"
-                class="action-btn action-btn-maps"
-                style="margin-bottom:0;">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="3 11 22 2 13 21 11 13 3 11"/>
-                    </svg>
-                    Start Navigation in Google Maps
-                </a>
+<button type="button"
+        onclick="startNavigation('{{ addslashes($booking->dropoff_address) }}')"
+        class="action-btn action-btn-maps"
+        id="nav-btn"
+        style="margin-bottom:0; border:none; cursor:pointer;">
+    <svg id="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+    </svg>
+    <span id="nav-label">Start Navigation in Google Maps</span>
+</button>
 
                 {{-- Info grid --}}
                 <div style="border-top:1px solid #f1f5f9; padding-top:20px; margin-top:20px;">
@@ -551,5 +552,91 @@ function confirmComplete(form) {
 const style = document.createElement('style');
 style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
 document.head.appendChild(style);
+
+// ── Start navigation with live GPS location ───
+function startNavigation(destination) {
+    const btn   = document.getElementById('nav-btn');
+    const icon  = document.getElementById('nav-icon');
+    const label = document.getElementById('nav-label');
+
+    // Show loading state
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+    label.textContent = 'Getting your location...';
+    icon.outerHTML = `
+        <svg id="nav-icon" style="animation:spin 1s linear infinite;" width="15" height="15"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+        </svg>`;
+
+    if (!navigator.geolocation) {
+        // Geolocation not supported — fall back to pickup address as origin
+        openMapsWithOrigin(
+            '{{ addslashes($booking->pickup_address) }}',
+            destination,
+            btn, label
+        );
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+
+            // Use current GPS coords as origin
+            const url = `https://www.google.com/maps/dir/?api=1`
+                + `&origin=${lat},${lng}`
+                + `&destination=${encodeURIComponent(destination)}`
+                + `&travelmode=driving`
+                + `&dir_action=navigate`;
+
+            window.open(url, '_blank');
+
+            // Reset button
+            resetNavBtn(btn, label);
+        },
+        function (error) {
+            // Permission denied or error — fall back to pickup address
+            console.warn('Geolocation error:', error.message);
+            openMapsWithOrigin(
+                '{{ addslashes($booking->pickup_address) }}',
+                destination,
+                btn, label
+            );
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 8000,
+            maximumAge: 0
+        }
+    );
+}
+
+function openMapsWithOrigin(origin, destination, btn, label) {
+    const url = `https://www.google.com/maps/dir/?api=1`
+        + `&origin=${encodeURIComponent(origin)}`
+        + `&destination=${encodeURIComponent(destination)}`
+        + `&travelmode=driving`
+        + `&dir_action=navigate`;
+
+    window.open(url, '_blank');
+    resetNavBtn(btn, label);
+}
+
+function resetNavBtn(btn, label) {
+    btn.disabled      = false;
+    btn.style.opacity = '1';
+    label.textContent = 'Start Navigation in Google Maps';
+    // Restore icon
+    const spinner = document.getElementById('nav-icon');
+    if (spinner) {
+        spinner.outerHTML = `
+            <svg id="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+            </svg>`;
+    }
+}
 </script>
 @endsection
