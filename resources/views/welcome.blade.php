@@ -8,6 +8,215 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0f172a">
+
+    <style>
+        /* ═══════════════════════════════════════════════
+           ANIMATION ADDITIONS — nothing overrides layout
+        ═══════════════════════════════════════════════ */
+
+        /* ── Keyframes ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.92); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes lineGrow {
+            from { transform: scaleX(0); }
+            to   { transform: scaleX(1); }
+        }
+        @keyframes dotPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(77,148,103,0.6); }
+            50%       { box-shadow: 0 0 0 6px rgba(77,148,103,0); }
+        }
+
+        /* ── Nav ── */
+        #main-nav {
+            animation: fadeIn 0.6s ease both;
+        }
+
+        /* ── Hero elements — staggered ── */
+        .hero-eyebrow {
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.15s both;
+        }
+        .hero-h1 {
+            opacity: 0;
+            animation: fadeUp 0.75s ease 0.3s both;
+        }
+        .hero-h1-sub {
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.42s both;
+        }
+        .hero-desc {
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.54s both;
+        }
+        .hero-actions {
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.66s both;
+        }
+        .hero-trust {
+            opacity: 0;
+            animation: fadeUp 0.65s ease 0.8s both;
+        }
+
+        /* ── Booking panel slides in from right ── */
+        .booking-panel {
+            opacity: 0;
+            animation: slideInRight 0.85s cubic-bezier(0.22,1,0.36,1) 0.5s both;
+        }
+
+        /* ── Mobile booking bar ── */
+        .mobile-booking-bar {
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.85s both;
+        }
+
+        /* ── Ticker fades in ── */
+        .ticker {
+            opacity: 0;
+            animation: fadeIn 0.8s ease 1s both;
+        }
+
+        /* ── Status dot pulse (already in hero + panel) ── */
+        .status-dot {
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        /* ── Scroll-reveal base state ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger children of a reveal parent */
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .reveal-stagger.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0s; }
+        .reveal-stagger.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.1s; }
+        .reveal-stagger.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.2s; }
+        .reveal-stagger.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.3s; }
+        .reveal-stagger.visible > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay: 0.4s; }
+        .reveal-stagger.visible > *:nth-child(6) { opacity:1; transform:translateY(0); transition-delay: 0.5s; }
+
+        /* ── Process steps slide in from left ── */
+        .process-step {
+            opacity: 0;
+            transform: translateX(-24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .process-steps.visible .process-step:nth-child(1) { opacity:1; transform:translateX(0); transition-delay: 0s; }
+        .process-steps.visible .process-step:nth-child(2) { opacity:1; transform:translateX(0); transition-delay: 0.12s; }
+        .process-steps.visible .process-step:nth-child(3) { opacity:1; transform:translateX(0); transition-delay: 0.24s; }
+        .process-steps.visible .process-step:nth-child(4) { opacity:1; transform:translateX(0); transition-delay: 0.36s; }
+
+        /* ── Why-us items scale in ── */
+        .why-item {
+            opacity: 0;
+            transform: scale(0.93) translateY(16px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .why-grid.visible .why-item:nth-child(1) { opacity:1; transform:scale(1) translateY(0); transition-delay: 0s; }
+        .why-grid.visible .why-item:nth-child(2) { opacity:1; transform:scale(1) translateY(0); transition-delay: 0.1s; }
+        .why-grid.visible .why-item:nth-child(3) { opacity:1; transform:scale(1) translateY(0); transition-delay: 0.2s; }
+        .why-grid.visible .why-item:nth-child(4) { opacity:1; transform:scale(1) translateY(0); transition-delay: 0.3s; }
+
+        /* ── Stats bar cells ── */
+        .stat-cell {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .stats-inner.visible .stat-cell:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0s; }
+        .stats-inner.visible .stat-cell:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.1s; }
+        .stats-inner.visible .stat-cell:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.2s; }
+        .stats-inner.visible .stat-cell:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.3s; }
+
+        /* ── CTA section ── */
+        .cta-inner {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .cta-inner.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Services table rows ── */
+        .services-table tbody tr {
+            opacity: 0;
+            transform: translateX(-16px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+        .services-table.visible tbody tr:nth-child(1) { opacity:1; transform:translateX(0); transition-delay: 0s; }
+        .services-table.visible tbody tr:nth-child(2) { opacity:1; transform:translateX(0); transition-delay: 0.08s; }
+        .services-table.visible tbody tr:nth-child(3) { opacity:1; transform:translateX(0); transition-delay: 0.16s; }
+        .services-table.visible tbody tr:nth-child(4) { opacity:1; transform:translateX(0); transition-delay: 0.24s; }
+        .services-table.visible tbody tr:nth-child(5) { opacity:1; transform:translateX(0); transition-delay: 0.32s; }
+        .services-table.visible tbody tr:nth-child(6) { opacity:1; transform:translateX(0); transition-delay: 0.40s; }
+
+        /* ── Hover lift on why-item cards ── */
+        .why-item {
+            transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.25s ease;
+        }
+        .why-grid.visible .why-item:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+        }
+
+        /* ── Hover lift on process steps ── */
+        .process-step {
+            transition: opacity 0.6s ease, transform 0.6s ease, background 0.2s ease;
+        }
+
+        /* ── Btn micro-interaction ── */
+        .btn-hero, .btn-nav-primary, .btn-panel-online, .btn-cta-online {
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+        }
+        .btn-hero:hover, .btn-nav-primary:hover, .btn-panel-online:hover, .btn-cta-online:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        }
+        .btn-hero:active, .btn-nav-primary:active, .btn-panel-online:active, .btn-cta-online:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        /* ── Reduce motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -233,7 +442,7 @@
     <section id="how-it-works">
         <div class="container">
             <div class="process-layout">
-                <div class="process-sidebar">
+                <div class="process-sidebar reveal">
                     <div class="tag">Process</div>
                     <h2 class="section-title">Four steps, zero hassle.</h2>
                     <p>No phone queues. No paperwork mountains. Book online in minutes — or just call and a dispatcher handles everything.</p>
@@ -276,7 +485,7 @@
     <!-- SERVICES TABLE -->
     <section id="services">
         <div class="container">
-            <div class="services-header">
+            <div class="services-header reveal">
                 <div>
                     <div class="tag">Services</div>
                     <h2 class="section-title">Every level of transport, covered.</h2>
@@ -330,15 +539,15 @@
     <div class="stats-bar">
         <div class="stats-inner">
             <div class="stat-cell">
-                <div class="stat-big">4,800+</div>
+                <div class="stat-big" data-count="4800" data-suffix="+">4,800+</div>
                 <div class="stat-label">Trips completed</div>
             </div>
             <div class="stat-cell">
-                <div class="stat-big">98%</div>
+                <div class="stat-big" data-count="98" data-suffix="%">98%</div>
                 <div class="stat-label">On-time arrivals</div>
             </div>
             <div class="stat-cell">
-                <div class="stat-big">120+</div>
+                <div class="stat-big" data-count="120" data-suffix="+">120+</div>
                 <div class="stat-label">Certified drivers</div>
             </div>
             <div class="stat-cell">
@@ -352,8 +561,8 @@
     <!-- WHY US -->
     <section id="why-us">
         <div class="container">
-            <div class="tag">Why Advocate Transport</div>
-            <h2 class="section-title" style="color:#fff;">Built for patients,<br>not just passengers.</h2>
+            <div class="tag reveal">Why Advocate Transport</div>
+            <h2 class="section-title reveal" style="color:#fff;">Built for patients,<br>not just passengers.</h2>
 
             <div class="why-grid">
                 <div class="why-item">
@@ -431,7 +640,7 @@
 
 
     <script>
-        // ── Nav scroll behaviour
+        // ── Nav scroll behaviour (original)
         const nav = document.getElementById('main-nav');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -443,7 +652,7 @@
             }
         }, { passive: true });
 
-        // ── Hamburger / mobile menu
+        // ── Hamburger / mobile menu (original)
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const mobileMenu   = document.getElementById('mobile-menu');
         let menuOpen = false;
@@ -468,22 +677,86 @@
             menuOpen ? closeMobileMenu() : openMobileMenu();
         });
 
-        // Close on outside click
         document.addEventListener('click', (e) => {
             if (menuOpen && !mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
                 closeMobileMenu();
             }
         });
 
-        // Close on Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && menuOpen) closeMobileMenu();
         });
 
-        // Re-enable scroll if resized back to desktop
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768 && menuOpen) closeMobileMenu();
         });
+
+        // ── SCROLL REVEAL ─────────────────────────────────────────
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        // Single reveal elements
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Process steps container
+        const processStepsEl = document.querySelector('.process-steps');
+        if (processStepsEl) revealObserver.observe(processStepsEl);
+
+        // Why grid
+        const whyGridEl = document.querySelector('.why-grid');
+        if (whyGridEl) revealObserver.observe(whyGridEl);
+
+        // Stats inner
+        const statsInnerEl = document.querySelector('.stats-inner');
+        if (statsInnerEl) revealObserver.observe(statsInnerEl);
+
+        // CTA inner
+        const ctaInnerEl = document.querySelector('.cta-inner');
+        if (ctaInnerEl) revealObserver.observe(ctaInnerEl);
+
+        // Services table
+        const servicesTableEl = document.querySelector('.services-table');
+        if (servicesTableEl) revealObserver.observe(servicesTableEl);
+
+        // ── COUNT-UP for stat numbers ──────────────────────────────
+        function animateCount(el, target, suffix, duration) {
+            const start = performance.now();
+            const isLarge = target > 999;
+            function step(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                // ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(eased * target);
+                el.textContent = isLarge
+                    ? current.toLocaleString() + suffix
+                    : current + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('[data-count]').forEach(el => {
+                        const target = parseInt(el.dataset.count, 10);
+                        const suffix = el.dataset.suffix || '';
+                        animateCount(el, target, suffix, 1400);
+                    });
+                    countObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const statsBar = document.querySelector('.stats-bar');
+        if (statsBar) countObserver.observe(statsBar);
     </script>
 </body>
 
