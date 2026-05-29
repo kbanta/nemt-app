@@ -992,7 +992,7 @@
                 </p>
                 <form method="POST"
                     action="{{ route('admin.bookings.destroy', $booking) }}"
-                    onsubmit="return confirm('Delete booking {{ $booking->booking_number }}? This cannot be undone.')">
+                    onsubmit="return confirm('Delete booking {{ $booking->booking_number }}?')">
                     @csrf
                     @method('DELETE')
                     <button type="submit"
