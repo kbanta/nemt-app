@@ -255,17 +255,42 @@
                 </div>
 
                 {{-- Open in Google Maps button --}}
-<button type="button"
-        onclick="startNavigation('{{ addslashes($booking->dropoff_address) }}')"
-        class="action-btn action-btn-maps"
-        id="nav-btn"
-        style="margin-bottom:0; border:none; cursor:pointer;">
-    <svg id="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="3 11 22 2 13 21 11 13 3 11"/>
-    </svg>
-    <span id="nav-label">Start Navigation in Google Maps</span>
-</button>
+                <!-- <button type="button"
+                        onclick="startNavigation('{{ addslashes($booking->dropoff_address) }}')"
+                        class="action-btn action-btn-maps"
+                        id="nav-btn"
+                        style="margin-bottom:0; border:none; cursor:pointer;">
+                    <svg id="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+                    </svg>
+                    <span id="nav-label">Start Navigation in Google Maps</span>
+                </button> -->
+                {{-- Navigate to Pickup --}}
+                <button type="button"
+                        onclick="startNavigation('{{ addslashes($booking->pickup_address) }}')"
+                        class="action-btn action-btn-maps"
+                        style="margin-bottom:8px; border:none; cursor:pointer;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="10" r="3"/>
+                        <path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/>
+                    </svg>
+                    <span>Navigate to Pickup</span>
+                </button>
+
+                {{-- Navigate to Dropoff --}}
+                <button type="button"
+                        onclick="startNavigation('{{ addslashes($booking->dropoff_address) }}')"
+                        class="action-btn action-btn-maps"
+                        id="nav-btn"
+                        style="margin-bottom:0; border:none; cursor:pointer;">
+                    <svg id="nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+                    </svg>
+                    <span id="nav-label">Navigate to Dropoff</span>
+                </button>
 
                 {{-- Info grid --}}
                 <div style="border-top:1px solid #f1f5f9; padding-top:20px; margin-top:20px;">
