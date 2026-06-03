@@ -4,219 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedRide — Non-Emergency Medical Transportation</title>
+    <title>Advocate Transport Service Inc.</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="theme-color" content="#0f172a">
 
-    <style>
-        /* ═══════════════════════════════════════════════
-           ANIMATION ADDITIONS — nothing overrides layout
-        ═══════════════════════════════════════════════ */
 
-        /* ── Keyframes ── */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(28px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(40px); }
-            to   { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to   { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.92); }
-            to   { opacity: 1; transform: scale(1); }
-        }
-        @keyframes lineGrow {
-            from { transform: scaleX(0); }
-            to   { transform: scaleX(1); }
-        }
-        @keyframes dotPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(77,148,103,0.6); }
-            50%       { box-shadow: 0 0 0 6px rgba(77,148,103,0); }
-        }
+    <!-- Primary SEO -->
+    <meta name="description" content="Advocate Transport Service Inc. offers safe, reliable non-emergency medical transportation — wheelchair, stretcher, bariatric, and ambulatory transport. Available 24/7. Book online or call 1-800-555-1234.">
+    <meta name="keywords" content="non-emergency medical transportation, NEMT, wheelchair transport, stretcher transport, bariatric transport, ambulatory transport, medical ride service">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.kb-multi-page.online/">
 
-        /* ── Nav ── */
-        #main-nav {
-            animation: fadeIn 0.6s ease both;
-        }
+    <!-- Open Graph (Facebook, LinkedIn previews) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.kb-multi-page.online/">
+    <meta property="og:title" content="Advocate Transport Service Inc.">
+    <meta property="og:description" content="Safe, reliable NEMT services — wheelchair, stretcher, bariatric & ambulatory. Available 24/7. Book online or call us directly.">
+    <meta property="og:image" content="https://www.kb-multi-page.online/favicon_io/favicon-32x32.jpg">
+    <meta property="og:site_name" content="Advocate Transport Service Inc.">
 
-        /* ── Hero elements — staggered ── */
-        .hero-eyebrow {
-            opacity: 0;
-            animation: fadeUp 0.7s ease 0.15s both;
-        }
-        .hero-h1 {
-            opacity: 0;
-            animation: fadeUp 0.75s ease 0.3s both;
-        }
-        .hero-h1-sub {
-            opacity: 0;
-            animation: fadeUp 0.7s ease 0.42s both;
-        }
-        .hero-desc {
-            opacity: 0;
-            animation: fadeUp 0.7s ease 0.54s both;
-        }
-        .hero-actions {
-            opacity: 0;
-            animation: fadeUp 0.7s ease 0.66s both;
-        }
-        .hero-trust {
-            opacity: 0;
-            animation: fadeUp 0.65s ease 0.8s both;
-        }
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon_io/favicon-16x16.png') }}">
 
-        /* ── Booking panel slides in from right ── */
-        .booking-panel {
-            opacity: 0;
-            animation: slideInRight 0.85s cubic-bezier(0.22,1,0.36,1) 0.5s both;
-        }
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon_io/apple-touch-icon.png') }}">
 
-        /* ── Mobile booking bar ── */
-        .mobile-booking-bar {
-            opacity: 0;
-            animation: fadeUp 0.7s ease 0.85s both;
-        }
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Advocate Transport Service Inc.">
+    <meta name="twitter:description" content="Safe, reliable NEMT services — wheelchair, stretcher, bariatric & ambulatory. Available 24/7.">
+    <meta name="twitter:image" content="https://www.kb-multi-page.online/favicon_io/favicon-32x32.jpg">
 
-        /* ── Ticker fades in ── */
-        .ticker {
-            opacity: 0;
-            animation: fadeIn 0.8s ease 1s both;
-        }
+    <script type="application/ld+json">
+    {
+    "@@context": "https://schema.org",
+    "@@type": "LocalBusiness",
+    "name": "Advocate Transport Service Inc.",
+    "url": "https://www.kb-multi-page.online/",
+    "telephone": "+18005551234",
+    "description": "Non-emergency medical transportation including wheelchair, stretcher, bariatric, and ambulatory transport. Available 24/7.",
+    "openingHours": "Mo-Su 00:00-23:59",
+    "priceRange": "$$",
+    "serviceType": ["Wheelchair Transport", "Stretcher Transport", "Bariatric Transport", "Ambulatory Transport"]
+    }
+    </script>
 
-        /* ── Status dot pulse (already in hero + panel) ── */
-        .status-dot {
-            animation: dotPulse 2s ease-in-out infinite;
-        }
-
-        /* ── Scroll-reveal base state ── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(32px);
-            transition: opacity 0.65s ease, transform 0.65s ease;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Stagger children of a reveal parent */
-        .reveal-stagger > * {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.55s ease, transform 0.55s ease;
-        }
-        .reveal-stagger.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0s; }
-        .reveal-stagger.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.1s; }
-        .reveal-stagger.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.2s; }
-        .reveal-stagger.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.3s; }
-        .reveal-stagger.visible > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay: 0.4s; }
-        .reveal-stagger.visible > *:nth-child(6) { opacity:1; transform:translateY(0); transition-delay: 0.5s; }
-
-        /* ── Process steps slide in from left ── */
-        .process-step {
-            opacity: 0;
-            transform: translateX(-24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .process-steps.visible .process-step:nth-child(1) { opacity:1; transform:translateX(0); transition-delay: 0s; }
-        .process-steps.visible .process-step:nth-child(2) { opacity:1; transform:translateX(0); transition-delay: 0.12s; }
-        .process-steps.visible .process-step:nth-child(3) { opacity:1; transform:translateX(0); transition-delay: 0.24s; }
-        .process-steps.visible .process-step:nth-child(4) { opacity:1; transform:translateX(0); transition-delay: 0.36s; }
-
-        /* ── Why-us items scale in ── */
-        .why-item {
-            opacity: 0;
-            transform: scale(0.93) translateY(16px);
-            transition: opacity 0.55s ease, transform 0.55s ease;
-        }
-        .why-grid.visible .why-item:nth-child(1) { opacity:1; transform:scale(1) translateY(0); transition-delay: 0s; }
-        .why-grid.visible .why-item:nth-child(2) { opacity:1; transform:scale(1) translateY(0); transition-delay: 0.1s; }
-        .why-grid.visible .why-item:nth-child(3) { opacity:1; transform:scale(1) translateY(0); transition-delay: 0.2s; }
-        .why-grid.visible .why-item:nth-child(4) { opacity:1; transform:scale(1) translateY(0); transition-delay: 0.3s; }
-
-        /* ── Stats bar cells ── */
-        .stat-cell {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .stats-inner.visible .stat-cell:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0s; }
-        .stats-inner.visible .stat-cell:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.1s; }
-        .stats-inner.visible .stat-cell:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.2s; }
-        .stats-inner.visible .stat-cell:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.3s; }
-
-        /* ── CTA section ── */
-        .cta-inner {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .cta-inner.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ── Services table rows ── */
-        .services-table tbody tr {
-            opacity: 0;
-            transform: translateX(-16px);
-            transition: opacity 0.45s ease, transform 0.45s ease;
-        }
-        .services-table.visible tbody tr:nth-child(1) { opacity:1; transform:translateX(0); transition-delay: 0s; }
-        .services-table.visible tbody tr:nth-child(2) { opacity:1; transform:translateX(0); transition-delay: 0.08s; }
-        .services-table.visible tbody tr:nth-child(3) { opacity:1; transform:translateX(0); transition-delay: 0.16s; }
-        .services-table.visible tbody tr:nth-child(4) { opacity:1; transform:translateX(0); transition-delay: 0.24s; }
-        .services-table.visible tbody tr:nth-child(5) { opacity:1; transform:translateX(0); transition-delay: 0.32s; }
-        .services-table.visible tbody tr:nth-child(6) { opacity:1; transform:translateX(0); transition-delay: 0.40s; }
-
-        /* ── Hover lift on why-item cards ── */
-        .why-item {
-            transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.25s ease;
-        }
-        .why-grid.visible .why-item:hover {
-            transform: translateY(-4px) !important;
-            box-shadow: 0 12px 32px rgba(0,0,0,0.18);
-        }
-
-        /* ── Hover lift on process steps ── */
-        .process-step {
-            transition: opacity 0.6s ease, transform 0.6s ease, background 0.2s ease;
-        }
-
-        /* ── Btn micro-interaction ── */
-        .btn-hero, .btn-nav-primary, .btn-panel-online, .btn-cta-online {
-            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
-        }
-        .btn-hero:hover, .btn-nav-primary:hover, .btn-panel-online:hover, .btn-cta-online:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
-        }
-        .btn-hero:active, .btn-nav-primary:active, .btn-panel-online:active, .btn-cta-online:active {
-            transform: translateY(0);
-            box-shadow: none;
-        }
-
-        /* ── Reduce motion ── */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -224,8 +62,8 @@
     <!-- NAV -->
     <nav id="main-nav" class="dark-nav">
         <a href="/" class="logo">
-            <img src="{{ asset('images/lg-white.png') }}" alt="MedRide" class="logo-img logo-light">
-            <img src="{{ asset('images/lg-black.png') }}" alt="MedRide" class="logo-img logo-dark">
+            <img src="{{ asset('images/lg-white.png') }}" alt="Advocate Transport Service Inc." class="logo-img logo-light">
+            <img src="{{ asset('images/lg-black.png') }}" alt="Advocate Transport Service Inc." class="logo-img logo-dark">
         </a>
 
         <ul class="nav-center">
@@ -238,9 +76,9 @@
             @if($isLoggedIn)
             @php
             $dashboard = match($user->role) {
-            'admin'      => route('admin.dashboard'),
-            'driver'     => route('driver.dashboard'),
-            'client'     => route('client.dashboard'),
+            'admin' => route('admin.dashboard'),
+            'driver' => route('driver.dashboard'),
+            'client' => route('client.dashboard'),
             'superadmin' => route('admin.dashboard'),
             };
             @endphp
@@ -266,9 +104,9 @@
     <!-- MOBILE MENU DRAWER -->
     <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
         <div class="mobile-menu-inner">
-            <a href="#services"     class="mobile-nav-link" onclick="closeMobileMenu()">Services</a>
+            <a href="#services" class="mobile-nav-link" onclick="closeMobileMenu()">Services</a>
             <a href="#how-it-works" class="mobile-nav-link" onclick="closeMobileMenu()">How it works</a>
-            <a href="#why-us"       class="mobile-nav-link" onclick="closeMobileMenu()">Why us</a>
+            <a href="#why-us" class="mobile-nav-link" onclick="closeMobileMenu()">Why us</a>
 
             <div class="mobile-menu-actions">
                 @if($isLoggedIn)
@@ -278,7 +116,7 @@
                     <button type="submit" class="btn-nav-outline" style="width:100%;cursor:pointer;">Sign out</button>
                 </form>
                 @else
-                <a href="{{ route('login') }}"    class="btn-nav-outline">Sign in</a>
+                <a href="{{ route('login') }}" class="btn-nav-outline">Sign in</a>
                 <a href="{{ route('register') }}" class="btn-nav-primary">Book online</a>
                 @endif
             </div>
@@ -407,7 +245,7 @@
                 <div class="mobile-booking-bar-divider"></div>
                 <div class="mobile-booking-bar-actions">
                     <a href="{{ route('register') }}" class="mbba-online">Book online</a>
-                    <a href="tel:18005551234"         class="mbba-call">Call now</a>
+                    <a href="tel:18005551234" class="mbba-call">Call now</a>
                 </div>
             </div>
         </div>
@@ -449,28 +287,36 @@
                 </div>
                 <div class="process-steps">
                     <div class="process-step">
-                        <div class="process-num-col"><div class="process-num">01</div></div>
+                        <div class="process-num-col">
+                            <div class="process-num">01</div>
+                        </div>
                         <div class="process-content">
                             <h3 class="process-step-title">Create your booking</h3>
                             <p class="process-step-body">Select a service type, enter your pickup and drop-off addresses, pick your date and time. Same-day bookings accepted.</p>
                         </div>
                     </div>
                     <div class="process-step">
-                        <div class="process-num-col"><div class="process-num">02</div></div>
+                        <div class="process-num-col">
+                            <div class="process-num">02</div>
+                        </div>
                         <div class="process-content">
                             <h3 class="process-step-title">Pay securely online</h3>
                             <p class="process-step-body">Pay through Stripe Checkout. Instant confirmation with a full receipt emailed to you — no surprises.</p>
                         </div>
                     </div>
                     <div class="process-step">
-                        <div class="process-num-col"><div class="process-num">03</div></div>
+                        <div class="process-num-col">
+                            <div class="process-num">03</div>
+                        </div>
                         <div class="process-content">
                             <h3 class="process-step-title">We assign your driver</h3>
                             <p class="process-step-body">A verified, trained driver matched to your transport needs is assigned and you're notified the moment they're en route.</p>
                         </div>
                     </div>
                     <div class="process-step">
-                        <div class="process-num-col"><div class="process-num">04</div></div>
+                        <div class="process-num-col">
+                            <div class="process-num">04</div>
+                        </div>
                         <div class="process-content">
                             <h3 class="process-step-title">Track in real time</h3>
                             <p class="process-step-body">Live status updates from assigned → in transit → arrived. You and your family always know where the vehicle is.</p>
@@ -513,12 +359,12 @@
                         <td>
                             <span class="svc-price-big">${{ number_format($st->base_price, 0) }}</span>
                             @if($st->price_per_mile > 0)
-                                <div class="svc-price-small">+ ${{ number_format($st->price_per_mile, 2) }} / mile</div>
+                            <div class="svc-price-small">+ ${{ number_format($st->price_per_mile, 2) }} / mile</div>
                             @endif
                             @if($st->included_miles > 0)
-                                <div class="svc-price-small" style="color:var(--forest); margin-top:4px;">
-                                    First {{ $st->included_miles }} mi included
-                                </div>
+                            <div class="svc-price-small" style="color:var(--forest); margin-top:4px;">
+                                First {{ $st->included_miles }} mi included
+                            </div>
                             @endif
                         </td>
                     </tr>
@@ -650,11 +496,13 @@
                 nav.classList.remove('scrolled');
                 nav.classList.add('dark-nav');
             }
-        }, { passive: true });
+        }, {
+            passive: true
+        });
 
         // ── Hamburger / mobile menu (original)
         const hamburgerBtn = document.getElementById('hamburger-btn');
-        const mobileMenu   = document.getElementById('mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
         let menuOpen = false;
 
         function openMobileMenu() {
@@ -699,7 +547,10 @@
                     revealObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
 
         // Single reveal elements
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
@@ -728,15 +579,16 @@
         function animateCount(el, target, suffix, duration) {
             const start = performance.now();
             const isLarge = target > 999;
+
             function step(now) {
                 const elapsed = now - start;
                 const progress = Math.min(elapsed / duration, 1);
                 // ease out cubic
                 const eased = 1 - Math.pow(1 - progress, 3);
                 const current = Math.round(eased * target);
-                el.textContent = isLarge
-                    ? current.toLocaleString() + suffix
-                    : current + suffix;
+                el.textContent = isLarge ?
+                    current.toLocaleString() + suffix :
+                    current + suffix;
                 if (progress < 1) requestAnimationFrame(step);
             }
             requestAnimationFrame(step);
@@ -753,7 +605,9 @@
                     countObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.3 });
+        }, {
+            threshold: 0.3
+        });
 
         const statsBar = document.querySelector('.stats-bar');
         if (statsBar) countObserver.observe(statsBar);
