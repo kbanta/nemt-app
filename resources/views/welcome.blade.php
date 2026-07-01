@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advocate Transport Service Inc.</title>
+    <title>Company Name</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
 
 
     <!-- Primary SEO -->
-    <meta name="description" content="Advocate Transport Service Inc. offers safe, reliable non-emergency medical transportation — wheelchair, stretcher, bariatric, and ambulatory transport. Available 24/7. Book online or call 1-800-555-1234.">
+    <meta name="description" content="Company Name offers safe, reliable non-emergency medical transportation — wheelchair, stretcher, bariatric, and ambulatory transport. Available 24/7. Book online or call 1-800-555-1234.">
     <meta name="keywords" content="non-emergency medical transportation, NEMT, wheelchair transport, stretcher transport, bariatric transport, ambulatory transport, medical ride service">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.kb-multi-page.online/">
@@ -22,10 +22,10 @@
     <!-- Open Graph (Facebook, LinkedIn previews) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.kb-multi-page.online/">
-    <meta property="og:title" content="Advocate Transport Service Inc.">
+    <meta property="og:title" content="Company Name">
     <meta property="og:description" content="Safe, reliable NEMT services — wheelchair, stretcher, bariatric & ambulatory. Available 24/7. Book online or call us directly.">
     <meta property="og:image" content="https://www.kb-multi-page.online/favicon_io/favicon-32x32.jpg">
-    <meta property="og:site_name" content="Advocate Transport Service Inc.">
+    <meta property="og:site_name" content="Company Name">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -37,7 +37,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Advocate Transport Service Inc.">
+    <meta name="twitter:title" content="Company Name">
     <meta name="twitter:description" content="Safe, reliable NEMT services — wheelchair, stretcher, bariatric & ambulatory. Available 24/7.">
     <meta name="twitter:image" content="https://www.kb-multi-page.online/favicon_io/favicon-32x32.jpg">
 
@@ -45,7 +45,7 @@
     {
     "@@context": "https://schema.org",
     "@@type": "LocalBusiness",
-    "name": "Advocate Transport Service Inc.",
+    "name": "Company Name",
     "url": "https://www.kb-multi-page.online/",
     "telephone": "+18005551234",
     "description": "Non-emergency medical transportation including wheelchair, stretcher, bariatric, and ambulatory transport. Available 24/7.",
@@ -62,8 +62,8 @@
     <!-- NAV -->
     <nav id="main-nav" class="dark-nav">
         <a href="/" class="logo">
-            <img src="{{ asset('images/lg-white.png') }}" alt="Advocate Transport Service Inc." class="logo-img logo-light">
-            <img src="{{ asset('images/lg-black.png') }}" alt="Advocate Transport Service Inc." class="logo-img logo-dark">
+            <img src="{{ asset('images/lg-white-x.png') }}" alt="Company Name" class="logo-img logo-light">
+            <img src="{{ asset('images/lg-black-x.png') }}" alt="Company Name" class="logo-img logo-dark">
         </a>
 
         <ul class="nav-center">
@@ -474,8 +474,8 @@
 
     <!-- FOOTER -->
     <footer>
-        <span class="footer-brand">Advocate Transport Service <span>Inc.</span></span>
-        <span class="footer-copy">© {{ date('Y') }} Advocate Transport Service Inc. All rights reserved.</span>
+        <span class="footer-brand">Company Name <span>Inc.</span></span>
+        <span class="footer-copy">© {{ date('Y') }} Company Name All rights reserved.</span>
         <div class="footer-links">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
