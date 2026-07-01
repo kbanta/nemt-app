@@ -97,7 +97,9 @@ class DriverController extends Controller
             'is_available'   => 'boolean',
         ]);
 
-        DB::transaction(function () use ($validated, $driver) {
+        $isAvailable = $request->boolean('is_available');
+
+        DB::transaction(function () use ($validated, $driver, $isAvailable) {
             $userData = [
                 'name'  => $validated['name'],
                 'email' => $validated['email'],
@@ -112,7 +114,7 @@ class DriverController extends Controller
                 'license_number' => $validated['license_number'],
                 'license_expiry' => $validated['license_expiry'],
                 'status'         => $validated['status'],
-                'is_available'   => $request->boolean('is_available'),
+                'is_available'   => $isAvailable,
             ]);
         });
 
