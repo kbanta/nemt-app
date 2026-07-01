@@ -660,8 +660,8 @@
             <div class="left-inner">
 
                 <a href="/" class="logo-img">
-                    <img src="{{ asset('images/lg-white.png') }}" alt="MedRide" class="logo-img logo-light">
-                    <!-- <img src="{{ asset('images/lg-black.png') }}" alt="MedRide" class="logo-img logo-dark"> -->
+                    <img src="{{ asset('images/lg-white-x.png') }}" alt="MedRide" class="logo-img logo-light">
+                    <!-- <img src="{{ asset('images/lg-black-x.png') }}" alt="MedRide" class="logo-img logo-dark"> -->
                 </a>
 
                 <div class="left-foot">

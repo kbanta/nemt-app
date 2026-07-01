@@ -357,7 +357,7 @@
                     <td>
                         <span style="font-family:'DM Mono',monospace; font-size:11px;
                                      color:#64748b; font-weight:500;">
-                            {{ $p->booking->booking_number }}
+                            {{ $p->booking?->booking_number ?? 'N/A' }}
                         </span>
                     </td>
                     <td>
@@ -444,7 +444,7 @@
                 <div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap;">
                     <span style="font-family:'DM Mono',monospace; font-size:10.5px;
                                  color:#64748b; font-weight:600;">
-                        {{ $p->booking->booking_number }}
+                        {{ $p->booking?->booking_number ?? 'N/A' }}
                     </span>
                     <span class="badge {{ $statusClass }}">
                         {{ ucfirst($p->status) }}
