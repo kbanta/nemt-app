@@ -171,6 +171,27 @@
 
     .action-refund:hover { background: #fee2e2; }
 
+    /* ── Invoice button ──────────────────────── */
+    .action-invoice {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 7px;
+        color: #2563eb;
+        background: #eff6ff;
+        border: none;
+        cursor: pointer;
+        font-family: 'DM Sans', sans-serif;
+        text-decoration: none;
+        transition: background 0.12s;
+        white-space: nowrap;
+    }
+
+    .action-invoice:hover { background: #dbeafe; }
+
     /* ── Desktop / mobile toggle ─────────────── */
     .desktop-table { display: block; overflow-x: auto; }
     .mobile-list   { display: none; }
@@ -398,9 +419,22 @@
                             ${{ number_format($p->amount, 2) }}
                         </span>
                     </td>
-                    <td style="text-align:right;">
+                    <td style="text-align:right; white-space:nowrap;">
+                        @if($p->booking)
+                        <a href="{{ route('admin.bookings.payment.invoice', $p->booking) }}"
+                            class="action-invoice" style="margin-right:4px;">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Invoice
+                        </a>
+                        @endif
                         @if($p->status === 'paid')
-                        <form method="POST" action="{{ route('admin.payments.refund', $p) }}">
+                        <form method="POST" action="{{ route('admin.payments.refund', $p) }}" style="display:inline;">
                             @csrf
                             <button type="submit" class="action-refund"
                                 onclick="return confirm('Issue a refund for ${{ number_format($p->amount, 2) }}? This cannot be undone.')">
@@ -413,7 +447,7 @@
                                 Refund
                             </button>
                         </form>
-                        @else
+                        @elseif(!$p->booking)
                         <span style="font-size:12px; color:#cbd5e1;">—</span>
                         @endif
                     </td>
@@ -484,29 +518,45 @@
                 </span>
             </div>
 
-            {{-- Refund button (paid only) --}}
-            @if($p->status === 'paid')
-            <form method="POST" action="{{ route('admin.payments.refund', $p) }}">
-                @csrf
-                <button type="submit"
-                    onclick="return confirm('Issue a refund for ${{ number_format($p->amount, 2) }}? This cannot be undone.')"
-                    style="width:100%; display:flex; align-items:center; justify-content:center;
-                           gap:6px; background:#fef2f2; color:#dc2626; border-radius:8px;
-                           padding:9px 12px; font-size:13px; font-weight:600;
-                           border:none; cursor:pointer; font-family:'DM Sans',sans-serif;
-                           transition:background 0.12s;"
-                    onmouseover="this.style.background='#fee2e2'"
-                    onmouseout="this.style.background='#fef2f2'">
+            {{-- Action buttons: Invoice + Refund --}}
+            <div style="display:flex; gap:8px;">
+                @if($p->booking)
+                <a href="{{ route('admin.bookings.payment.invoice', $p->booking) }}"
+                    class="action-invoice"
+                    style="flex:1; justify-content:center; padding:9px 12px;">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2.5"
                         stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="1 4 1 10 7 10"/>
-                        <path d="M3.51 15a9 9 0 1 0 .49-3.5"/>
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
                     </svg>
-                    Issue Refund
-                </button>
-            </form>
-            @endif
+                    Invoice
+                </a>
+                @endif
+                @if($p->status === 'paid')
+                <form method="POST" action="{{ route('admin.payments.refund', $p) }}" style="flex:1;">
+                    @csrf
+                    <button type="submit"
+                        onclick="return confirm('Issue a refund for ${{ number_format($p->amount, 2) }}? This cannot be undone.')"
+                        style="width:100%; display:flex; align-items:center; justify-content:center;
+                               gap:6px; background:#fef2f2; color:#dc2626; border-radius:8px;
+                               padding:9px 12px; font-size:13px; font-weight:600;
+                               border:none; cursor:pointer; font-family:'DM Sans',sans-serif;
+                               transition:background 0.12s;"
+                        onmouseover="this.style.background='#fee2e2'"
+                        onmouseout="this.style.background='#fef2f2'">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="1 4 1 10 7 10"/>
+                            <path d="M3.51 15a9 9 0 1 0 .49-3.5"/>
+                        </svg>
+                        Issue Refund
+                    </button>
+                </form>
+                @endif
+            </div>
 
         </div>
         @endforeach
